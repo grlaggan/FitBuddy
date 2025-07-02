@@ -11,6 +11,7 @@ router = APIRouter(prefix="/users", tags=["users"])
     "/register",
     response_model=schemas.UserSchema,
     summary="Register new user",
+    response_model_exclude_none=True,
 )
 async def register(
     user: Annotated[models.UserModel, Depends(dependencies.create_user_depend)],
@@ -33,5 +34,5 @@ async def refresh(
 
 
 @router.get("/check_auth", summary="Check if user is authenticated")
-async def check_auth(result: Annotated[dict, Depends()]):
+async def check_auth(result: Annotated[dict, Depends(dependencies.check_auth_depend)]):
     return result
