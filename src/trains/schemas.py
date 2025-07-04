@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from pydantic.config import ConfigDict
-from src.trains.enums import TrainStatus
+from src.core import TrainStatus
 
 
 class BaseTrainSchema(BaseModel):

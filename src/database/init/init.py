@@ -7,7 +7,7 @@ from src import sets
 class InitDB:
     def __init__(self):
         self.engine = create_async_engine(sets.db.url)
-        self.get_session = async_sessionmaker(engine=self.engine)
+        self.get_session = async_sessionmaker(self.engine)
 
     async def async_session(self):
         async with self.get_session() as session:

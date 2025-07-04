@@ -1,5 +1,4 @@
 __all__ = (
-    "models",
     "schemas",
     "crud",
     "views",
@@ -8,4 +7,4 @@ __all__ = (
     "password",
 )
 
-from . import models, schemas, crud, views, dependencies, exceptions, password
+from . import schemas, crud, views, dependencies, exceptions, password

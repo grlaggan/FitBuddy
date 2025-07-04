@@ -4,21 +4,19 @@ from sqlalchemy.ext.asyncio.session import AsyncSession
 from fastapi import Depends, HTTPException, status, Body
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
-from src.users import models
+from src.database import UserModel
 from src.users.password import verify_password
 from src.users.jwt import encode, decode
 from src.users.crud import create_user, get_user_by_id, get_user_by_username
 from src.users.schemas import CreateUserSchema, TokensSchema, UserSchema
-from src.database import init_db
+from src.database.init import init_db
 from src import sets
 
 Session = Annotated[AsyncSession, Depends(init_db.async_session)]
 http_bearer = HTTPBearer()
 
 
-async def create_user_depend(
-    user: CreateUserSchema, session: Session
-) -> models.UserModel:
+async def create_user_depend(user: CreateUserSchema, session: Session) -> UserModel:
     if user.password != user.password_second:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,

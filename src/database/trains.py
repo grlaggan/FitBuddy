@@ -3,16 +3,17 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Enum, String
 from sqlalchemy.sql.schema import ForeignKey
 
-from src.database import Base
-from src.trains.enums import TrainStatus
+from src.database.base import Base
+from src.core import TrainStatus
 
 if TYPE_CHECKING:
-    from src.users.models import UserModel
+    from src.database import UserModel
 
 
 class TrainModel(Base):
     __tablename__ = "trains"
 
+    id: Mapped[int] = mapped_column(primary_key=True)
     date: Mapped[str]
     type: Mapped[TrainStatus] = mapped_column(Enum(TrainStatus, native_enum=True))
     title: Mapped[str] = mapped_column(String(128))

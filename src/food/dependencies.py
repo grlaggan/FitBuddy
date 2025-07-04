@@ -4,7 +4,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.ext.asyncio.session import AsyncSession
 
 from src.food.crud import create_food
-from src.database import init_db
+from src.database.init import init_db
 from src.food.schemas import CreateFoodSchema, CreateFoodWithUserIdSchema, FoodSchema
 from src.users.jwt import decode
 

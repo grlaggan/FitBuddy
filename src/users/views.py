@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 from typing import Annotated
 
-from src.users import schemas, models, dependencies
-from src.users.schemas import TokensSchema
+from src.users import schemas, dependencies
+from src.database import UserModel
 
 router = APIRouter(prefix="/users", tags=["users"])
 
@@ -14,12 +14,12 @@ router = APIRouter(prefix="/users", tags=["users"])
     response_model_exclude_none=True,
 )
 async def register(
-    user: Annotated[models.UserModel, Depends(dependencies.create_user_depend)],
+    user: Annotated[UserModel, Depends(dependencies.create_user_depend)],
 ):
     return user
 
 
-@router.get("/login", response_model=schemas.TokensSchema, summary="Login user")
+@router.post("/login", response_model=schemas.TokensSchema, summary="Login user")
 async def login(
     user_tokens: Annotated[schemas.TokensSchema, Depends(dependencies.login_depend)],
 ):

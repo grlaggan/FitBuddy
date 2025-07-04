@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio.session import AsyncSession
 from fastapi.security import HTTPBearer
 from fastapi.security import HTTPAuthorizationCredentials
 
-from src.database import init_db
+from src.database.init import init_db
 from src.trains.crud import create_train
 from src.trains.schemas import CreateTrainSchema, TrainSchema, CreateTrainUserIdSchema
 from src.users.jwt import decode

@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio.session import AsyncSession
 from datetime import datetime, timezone
 
 from src.trains.schemas import CreateTrainUserIdSchema
-from src.trains.models import TrainModel
+from src.database import TrainModel
 
 
 async def create_train(

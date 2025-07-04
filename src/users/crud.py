@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from sqlalchemy import select
 
-from src.users.models import UserModel
+from src.database import UserModel
 from src.users.schemas import CreateUserSchema
 from src.users.password import hash_password
 
@@ -21,7 +21,16 @@ async def create_user(user_data: CreateUserSchema, session: AsyncSession) -> Use
 
 
 async def get_user_by_id(user_id: int, session: AsyncSession) -> type[UserModel] | None:
-    return await session.get(UserModel, user_id)
+    user = await session.get(UserModel, user_id)
+
+    if not user:
+        return None
+
+    session.add(user)
+    await session.commit()
+    await session.refresh(user)
+
+    return user
 
 
 async def get_user_by_username(

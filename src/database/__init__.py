@@ -1,6 +1,11 @@
-__all__ = ["Base", "init_db"]
+__all__ = [
+    "Base",
+    "FoodModel",
+    "TrainModel",
+    "UserModel",
+]
 
-from .init import InitDB
 from .base import Base
-
-init_db = InitDB()
+from .food import FoodModel
+from .trains import TrainModel
+from .users import UserModel

@@ -2,11 +2,11 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, BigInteger
 from typing import TYPE_CHECKING
 
-from src.database import Base
+from src.database.base import Base
 
 if TYPE_CHECKING:
-    from src.trains.models import TrainModel
-    from src.food.models import FoodModel
+    from src.database import TrainModel
+    from src.database import FoodModel
 
 
 class UserModel(Base):

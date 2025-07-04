@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from datetime import datetime, timezone
 
-from src.food.models import FoodModel
+from src.database import FoodModel
 from src.food.schemas import CreateFoodWithUserIdSchema
 
 
