@@ -27,4 +27,4 @@ class CreateTrainUserIdSchema(BaseTrainSchema):
 class TrainSchema(BaseTrainSchema):
     id: int
     user_id: int
-    date: int
+    date: str

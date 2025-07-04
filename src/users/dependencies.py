@@ -52,9 +52,10 @@ async def login_depend(
             detail="Incorrect password!",
         )
 
-    access_token = encode({"sub": user.id})
+    access_token = encode({"sub": str(user.id)})
     refresh_token = encode(
-        {"sub": user.id}, refresh_token_days_expire=sets.jwt.refresh_token_days_expire
+        {"sub": str(user.id)},
+        refresh_token_days_expire=sets.jwt.refresh_token_days_expire,
     )
 
     return TokensSchema(
